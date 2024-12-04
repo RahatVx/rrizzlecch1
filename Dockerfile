@@ -14,4 +14,4 @@ COPY . .
 
 RUN chmod +x start.sh
 
-CMD ["bash", "-c", "python3 update.py && python3 -m bot"]
+CMD ["bash", "-c", "source /usr/src/app/venv/bin/activate && python3 update.py && python3 -m bot"]
