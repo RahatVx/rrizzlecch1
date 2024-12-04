@@ -1,34 +1,26 @@
-# Use an appropriate base image (e.g., Python image)
+# Use an appropriate base image
 FROM python:3.10-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Install system dependencies for Python venv and other dependencies
+# Install dependencies for venv and build tools
 RUN apt-get update && apt-get install -y python3.10-venv build-essential
 
-# Set permissions for the app directory
-RUN chmod -R 755 /usr/src/app
-
-# Copy the requirements.txt file into the container
+# Copy requirements and install dependencies
 COPY requirements.txt .
-
-# Create a virtual environment
 RUN python3 -m venv venv
-
 RUN ./venv/bin/pip install requests pytz
-
-# Install dependencies into the virtual environment
 RUN ./venv/bin/pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application files into the container
+# Copy the application code
 COPY . .
 
-# Add xon-bit binary to the container
-COPY xon-bit /usr/src/app/xon-bit
+# Add xon-bit binary to the container (correct path assumed)
+COPY bin/xon-bit /usr/src/app/xon-bit
 
-# Make the xon-bit file executable
+# Make xon-bit executable
 RUN chmod +x /usr/src/app/xon-bit
 
-# Set the default command to run your Python script or app
+# Default command to run the application
 CMD ["./venv/bin/python3", "update.py", "&&", "./venv/bin/python3", "-m", "bot"]
