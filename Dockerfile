@@ -7,7 +7,7 @@ RUN python3 -m venv wzmlxenv
 RUN pip install pytz
 
 COPY requirements.txt .
-RUN mltbenv/bin/pip install --no-cache-dir -r requirements.txt
+RUN wzmlxenv/bin/pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
