@@ -43,3 +43,5 @@ uv
 uvloop
 xattr
 yt-dlp
+requests==2.25.1
+
