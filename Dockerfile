@@ -6,7 +6,7 @@ RUN chmod 777 /usr/src/app
 RUN python3 -m venv wzmlxenv
 
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN wzmlxenv/bin/pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
