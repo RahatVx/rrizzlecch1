@@ -157,12 +157,12 @@ def get_all_versions():
     except FileNotFoundError:
         vp = ''
     try:
-        result = srun([bot_cache['pkgs'][2], '-version'], capture_output=True, text=True)
+        result = srun(['ffmpeg', '-version'], capture_output=True, text=True)
         vf = result.stdout.split('\n')[0].split(' ')[2].split('ubuntu')[0]
     except FileNotFoundError:
         vf = ''
     try:
-        result = srun([bot_cache['pkgs'][3], 'version'], capture_output=True, text=True)
+        result = srun(['rclone', 'version'], capture_output=True, text=True)
         vr = result.stdout.split('\n')[0].split(' ')[1]
     except FileNotFoundError:
         vr = ''
